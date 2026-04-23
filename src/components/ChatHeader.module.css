@@ -1,0 +1,92 @@
+/* ChatHeader.module.css */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 8px 10px 4px;
+  background: var(--header-bg);
+  color: var(--header-text);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  /* iOS-style status bar space */
+  padding-top: max(10px, env(safe-area-inset-top, 10px));
+  min-height: 56px;
+}
+
+/* Back button */
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  background: none;
+  border: none;
+  color: var(--header-text);
+  cursor: pointer;
+  padding: 4px 2px 4px 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+.backCount {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+/* Avatar */
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Name + status */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  cursor: pointer;
+}
+.name {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--header-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.status {
+  font-size: 0.72rem;
+  color: var(--header-sub);
+  line-height: 1.3;
+}
+
+/* Right action icons */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.iconBtn {
+  background: none;
+  border: none;
+  color: var(--header-text);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: opacity 0.15s;
+  opacity: 0.9;
+}
+.iconBtn:hover  { opacity: 1; }
+.iconBtn:active { opacity: 0.6; }

@@ -1,0 +1,70 @@
+/* App.module.css */
+
+/* ── Desktop shell — centres phone on screen ─────────────── */
+.shell {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;   /* dark desktop backdrop */
+}
+
+/* ── Phone frame ─────────────────────────────────────────── */
+.phone {
+  width: 100%;
+  max-width: 390px;  /* iPhone 14 width — easy to change */
+  height: 100dvh;
+  max-height: 844px; /* iPhone 14 height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-chat);
+  position: relative;
+
+  /* Optional phone border on desktop */
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06),
+              0 30px 80px rgba(0,0,0,0.6);
+}
+
+@media (min-width: 420px) {
+  .phone {
+    border-radius: 44px;
+  }
+}
+
+/* ── Chat scroll area ────────────────────────────────────── */
+.chatArea {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 8px;
+  scroll-behavior: smooth;
+
+  /* Background wallpaper */
+  background-image: var(--bg-url, none);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;   /* fixed = stays pinned, messages scroll over it */
+}
+
+/* Dark overlay on the wallpaper so bubbles stay readable */
+[data-theme="dark"] .chatArea {
+  background-color: var(--bg-chat);
+  background-blend-mode: multiply;
+}
+
+/* Thin scrollbar */
+.chatArea::-webkit-scrollbar { width: 3px; }
+.chatArea::-webkit-scrollbar-thumb {
+  background: rgba(128,128,128,0.25);
+  border-radius: 3px;
+}
+
+/* ── Full-screen on actual phones ────────────────────────── */
+@media (max-width: 419px) {
+  .shell  { background: var(--bg-chat); }
+  .phone  { max-height: none; border-radius: 0; box-shadow: none; }
+}

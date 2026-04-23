@@ -7,29 +7,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1a1a2e;   /* dark desktop backdrop */
+  background: #1a1a2e;
 }
 
-/* ── Phone frame ─────────────────────────────────────────── */
+/* ── Phone frame — fills full screen on mobile ───────────── */
 .phone {
   width: 100%;
-  max-width: 390px;  /* iPhone 14 width — easy to change */
   height: 100dvh;
-  max-height: 844px; /* iPhone 14 height */
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background: var(--bg-chat);
   position: relative;
-
-  /* Optional phone border on desktop */
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.06),
-              0 30px 80px rgba(0,0,0,0.6);
 }
 
-@media (min-width: 420px) {
+/* Desktop only: constrain to phone-like width with rounded frame */
+@media (min-width: 500px) {
   .phone {
+    max-width: 390px;
+    max-height: 844px;
     border-radius: 44px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06),
+                0 30px 80px rgba(0,0,0,0.6);
   }
 }
 
@@ -47,10 +46,10 @@
   background-image: var(--bg-url, none);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;   /* fixed = stays pinned, messages scroll over it */
+  background-attachment: local;
 }
 
-/* Dark overlay on the wallpaper so bubbles stay readable */
+/* Dark overlay on wallpaper */
 [data-theme="dark"] .chatArea {
   background-color: var(--bg-chat);
   background-blend-mode: multiply;
@@ -63,8 +62,15 @@
   border-radius: 3px;
 }
 
-/* ── Full-screen on actual phones ────────────────────────── */
-@media (max-width: 419px) {
-  .shell  { background: var(--bg-chat); }
-  .phone  { max-height: none; border-radius: 0; box-shadow: none; }
+/* ── Full-screen on mobile — no gaps, no backdrop ────────── */
+@media (max-width: 499px) {
+  .shell {
+    background: var(--bg-chat); /* no dark backdrop showing */
+  }
+  .phone {
+    max-width: 100%;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
